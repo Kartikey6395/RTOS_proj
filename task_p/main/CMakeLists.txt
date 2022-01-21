@@ -1,0 +1,1 @@
+idf_component_register(SRCS "task_p_main.c" INCLUDE_DIRS "")
