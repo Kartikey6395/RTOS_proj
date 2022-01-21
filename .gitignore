@@ -1,0 +1,4 @@
+##files to be ignored
+build
+sdkconfig
+sdkconfig.old
