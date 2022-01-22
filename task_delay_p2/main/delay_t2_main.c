@@ -7,7 +7,7 @@ void Task_1_LED(void *pvParameters)
 {
     while(1)
     {
-        printf("task_1_led_toggle\n");
+        printf("task_1_led_\n");
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
