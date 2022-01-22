@@ -1,0 +1,1 @@
+idf_component_register(SRCS "delay_t2_main.c" INCLUDE_DIRS "")
