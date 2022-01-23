@@ -45,13 +45,13 @@ void app_main()
     xReturned_2 = xTaskCreate(Task_2_ALARM,"TaskDelayLog2",2048,NULL,10,&xHandle_Task_2);
     if(xReturned_1 == pdPASS)
     {
-        printf("task 1 created\n");
-        //vTaskDelete( xHandle_Task_1);
+        printf("task 1 created: Priority=> %d\n",uxTaskPriorityGet(xHandle_Task_1));
+        vTaskDelete( xHandle_Task_1);
     }
 
     if(xReturned_2 == pdPASS)
     {
-        printf("task 2 created\n");
-        //vTaskDelete( xHandle_Task_2);
+        printf("task 1 created: Priority=> %d\n",uxTaskPriorityGet(xHandle_Task_2));
+        vTaskDelete( xHandle_Task_2);
     }
 }
