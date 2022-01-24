@@ -13,7 +13,7 @@ QueueHandle_t xMsgQueue_1;
 
 QueueHandle_t xStructQueue_2;
 void Task_1_Sensor(void *pvParameters)
-{   int i = 0;
+{   int i = 0,count=0;
     struct Queue *Msg_Q_1 = {pcTaskGetName(NULL),eTaskGetState(NULL),uxTaskGetStackHighWaterMark( NULL )};
     xQueueSend(xStructQueue_2,(void *)&Msg_Q_1,portMAX_DELAY);
 
@@ -21,10 +21,12 @@ void Task_1_Sensor(void *pvParameters)
     {   
         
         i++;
+        count++;
         xQueueSend(xMsgQueue_1,&i,portMAX_DELAY);
         printf("Sensor_task:Sending Data = %d\n",i);
-        if(i == 10)
+        if(count == 10)
         {
+            count =0;
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
         vTaskDelay(500 / portTICK_PERIOD_MS);
         }
