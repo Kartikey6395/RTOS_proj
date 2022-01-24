@@ -1,0 +1,1 @@
+idf_component_register(SRCS "count_sema_main.c" INCLUDE_DIRS "")
