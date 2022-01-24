@@ -24,7 +24,7 @@ void Task_1_Sensor(void *pvParameters)
         count++;
         xQueueSend(xMsgQueue_1,&i,portMAX_DELAY);
         printf("Sensor_task:Sending Data = %d\n",i);
-        if(count == 10)
+        if(count > 10)
         {
             count =0;
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
@@ -66,9 +66,10 @@ void app_main()
     struct Queue *xpMsg_Q = {"\0",0,0};
     if((xQueueReceive(xStructQueue_2,&xpMsg_Q,portMAX_DELAY)) == pdPASS)
     {
+        printf("xQueue is full goes to blockmode\n");
         printf("Task_name => %s\n",(char *)xpMsg_Q->Task_name);
-    printf("Task State => %d\n",xpMsg_Q->Task_state);
-    printf("Task_stacksize => %d\n",xpMsg_Q->Task_stacksize);
+    printf("Task State => %c\n",(char)xpMsg_Q->Task_state);
+    printf("Task_stacksize => %d\n",(xpMsg_Q->Task_stacksize));
     }
 
     if(xReturned_1 == pdPASS)
