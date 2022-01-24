@@ -1,0 +1,1 @@
+idf_component_register(SRCS "xQueue_p2_main.c" INCLUDE_DIRS "")
