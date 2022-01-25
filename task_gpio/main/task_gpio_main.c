@@ -9,7 +9,8 @@
 
 void Task_LED(void *pvParameters)
 {
-    esp_rom_gpio_pad_select_gpio(LED_PIN);
+    //esp_rom_gpio_pad_select_gpio(LED_PIN);
+    gpio_reset_pin(LED_PIN);
     gpio_set_direction(LED_PIN,GPIO_MODE_OUTPUT);
     while(1)
     {
