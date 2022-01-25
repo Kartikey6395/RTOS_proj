@@ -31,10 +31,10 @@ void app_main()
 {
     TaskHandle_t xHandle_Task_1 = NULL;
     BaseType_t xReturned_1;
-    xReturned_1 = xTaskCreate(Task_1_LED,"TaskDelayLog1",2048,NULL,20,&xHandle_Task_1);
+    xReturned_1 = xTaskCreate(Task_1_LED,"TaskDelayLog1",2048,NULL,4,&xHandle_Task_1);
     TaskHandle_t xHandle_Task_2 = NULL;
     BaseType_t xReturned_2;
-    xReturned_2 = xTaskCreate(Task_2_ALARM,"TaskDelayLog2",2048,NULL,10,&xHandle_Task_2);
+    xReturned_2 = xTaskCreate(Task_2_ALARM,"TaskDelayLog2",2048,NULL,1,&xHandle_Task_2);
     if(xReturned_1 == pdPASS)
     {
         printf("task 1 created: Priority=> %d\n",uxTaskPriorityGet(xHandle_Task_1));
