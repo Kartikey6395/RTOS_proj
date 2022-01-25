@@ -1,0 +1,1 @@
+idf_component_register(SRCS "change_priority_main.c" INCLUDE_DIRS "")
