@@ -1,0 +1,1 @@
+idf_component_register(SRCS "Mutex_task_main.c" INCLUDE_DIRS "")
