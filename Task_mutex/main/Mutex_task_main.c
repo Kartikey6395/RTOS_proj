@@ -43,6 +43,7 @@ void Task_2_Process(void *pvParameters)
         printf("Processing_task:receive data =%d\n",j);
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
         xSemaphoreGive(xsem_mutex);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
         if(count == 10){
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         }
@@ -61,7 +62,7 @@ void app_main()
     xReturned_1 = xTaskCreate(Task_1_Sensor,"Task_1_Sensing",2048,NULL,4,&xHandle_Task_1);
     TaskHandle_t xHandle_Task_2 = NULL;
     BaseType_t xReturned_2;
-    xReturned_2 = xTaskCreate(Task_2_Process,"Task_2_Processing",2048,NULL,4,&xHandle_Task_2);
+    xReturned_2 = xTaskCreate(Task_2_Process,"Task_2_Processing",2048,NULL,3,&xHandle_Task_2);
 
 
     //xSemaphoreTake(sem_bin, portMAX_DELAY);
