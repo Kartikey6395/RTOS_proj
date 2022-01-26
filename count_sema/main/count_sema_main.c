@@ -7,49 +7,78 @@
 
 QueueHandle_t xMsgQueue_1;
 SemaphoreHandle_t sem_count;
+int arr = 1;
+
 
 
 void Task_1_Sensor_A(void *pvParameters)
-{   int samples = 0,count=0;
+{   int count=0;
     
     while(1)
     {   
         
-        samples++;
+        
         count++;
-        xSemaphoreTake(sem_count);
-        xQueueSend(xMsgQueue_1,&samples,portMAX_DELAY);
-        printf("Sensor_task:Sending Data = %d\n",samples);
-        vTaskDelay(500 / portTICK_PERIOD_MS);
-        if(count == 10)
+        xSemaphoreTake(sem_count,portMAX_DELAY);
+        xQueueSend(xMsgQueue_1,&arr,portMAX_DELAY);
+        printf("Sensor_task_1_A:Sending Data = %d\n",(arr++));
+        //vTaskDelay(500 / portTICK_PERIOD_MS);
+        if(count <= 10)
         {   xSemaphoreGive(sem_count);
-            count =0;
+            //count =0;
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         }
+        else
+        vTaskDelete( NULL);
     }
 }
 
-int arr[10];
+
 
 void Task_3_Sensor_B(void *pvParameters)
 {   
     int count =0;
     while(1)
-    {   
-        count++;
-        xSemaphoreTake(sem_count);
-        xQueueReceive(xMsgQueue_1,&arr,portMAX_DELAY);
-        printf("Sensor B_task_3:Sending Data arr[] = %d\n",arr[count]);
-        &arr++;
+    {   count++;
+        
+        xSemaphoreTake(sem_count,portMAX_DELAY);
+        xQueueSend(xMsgQueue_1,&arr,portMAX_DELAY);
+        printf("Sensor B_task_3:Sending Data arr = %d\n",arr++);
+        
         
         //vTaskDelay(500 / portTICK_PERIOD_MS);
-        if(count == 10)
+        if(count <= 10)
         {   xSemaphoreGive(sem_count);
-            count =0;
+            //count =0;
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         }
+        else
+        vTaskDelete( NULL);
+    }
+}
+
+void Task_4_Sensor_C(void *pvParameters)
+{   
+    int count =0;
+    while(1)
+    {   count++;
+        
+        xSemaphoreTake(sem_count,portMAX_DELAY);
+        xQueueSend(xMsgQueue_1,&arr,portMAX_DELAY);
+        printf("Sensor C_task_4:Sending Data arr = %d\n",(arr++));
+        
+        
+        //vTaskDelay(500 / portTICK_PERIOD_MS);
+        if(count <= 10)
+        {   xSemaphoreGive(sem_count);
+            //count =0;
+        //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        }
+        else
+        vTaskDelete( NULL);
     }
 }
 
@@ -60,12 +89,12 @@ void Task_2_Process(void *pvParameters)
     int j = 0;
     while(1)
     {
-        xSemaphoreTake( sem_count, portMAX_DELAY);
+       // xSemaphoreTake( sem_count, portMAX_DELAY);
         xQueueReceive(xMsgQueue_1,&j,portMAX_DELAY);
-        printf("Processing_task:receive data =%d\n",j);
-        xSemaphoreGive(sem_count);
+        printf("Processing_task_2:receive data =%d\n",j);
+        //xSemaphoreGive(sem_count);
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
     }
 }
 
@@ -85,6 +114,9 @@ void app_main()
     TaskHandle_t xHandle_Task_2 = NULL;
     BaseType_t xReturned_2;
     xReturned_2 = xTaskCreate(Task_2_Process,"Task_2_Processing",2048,NULL,5,&xHandle_Task_2);
+    TaskHandle_t xHandle_Task_4 = NULL;
+    BaseType_t xReturned_4;
+    xReturned_4 = xTaskCreate(Task_4_Sensor_C,"Task_4_Sensing",2048,NULL,5,&xHandle_Task_4);
 
 
     
@@ -105,6 +137,18 @@ void app_main()
     if(xReturned_2 == pdPASS)
     {
         printf("task 2 created: Priority=> %d\n",uxTaskPriorityGet(xHandle_Task_2));
+        //vTaskDelete( xHandle_Task_2);
+    }
+
+    if(xReturned_3 == pdPASS)
+    {
+        printf("task 3 created: Priority=> %d\n",uxTaskPriorityGet(xHandle_Task_3));
+        //vTaskDelete( xHandle_Task_2);
+    }
+
+    if(xReturned_4 == pdPASS)
+    {
+        printf("task 4 created: Priority=> %d\n",uxTaskPriorityGet(xHandle_Task_4));
         //vTaskDelete( xHandle_Task_2);
     }
 }

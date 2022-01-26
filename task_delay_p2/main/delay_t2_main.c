@@ -11,7 +11,7 @@ void Task_1_LED(void *pvParameters)
         i++;
         if(i==1000)
         {//const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
         }
     }
 }

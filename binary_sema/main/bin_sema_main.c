@@ -20,8 +20,9 @@ void Task_1_Sensor(void *pvParameters)
         xQueueSend(xMsgQueue_1,&samples,portMAX_DELAY);
         printf("Sensor_task:Sending Data = %d\n",samples);
         vTaskDelay(500 / portTICK_PERIOD_MS);
+        xSemaphoreGive(sem_bin);
         if(count == 10)
-        {   xSemaphoreGive(sem_bin);
+        {   
             count =0;
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
         vTaskDelay(1000 / portTICK_PERIOD_MS);
@@ -39,7 +40,7 @@ void Task_2_Process(void *pvParameters)
         xQueueReceive(xMsgQueue_1,&j,portMAX_DELAY);
         printf("Processing_task:receive data =%d\n",j);
         //const TickType_t xDelay = 1000 / portTICK_PERIOD_MS;
-        //vTaskDelay(1000 / portTICK_PERIOD_MS);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 

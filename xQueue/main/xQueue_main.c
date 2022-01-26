@@ -68,7 +68,7 @@ void app_main()
     {
         printf("xQueue is full goes to blockmode\n");
         printf("Task_name => %s\n",(char *)xpMsg_Q->Task_name);
-    printf("Task State => %c\n",(char)xpMsg_Q->Task_state);
+    printf("Task State => %d\n",xpMsg_Q->Task_state);
     printf("Task_stacksize => %d\n",(xpMsg_Q->Task_stacksize));
     }
 
