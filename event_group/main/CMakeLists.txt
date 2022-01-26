@@ -1,0 +1,1 @@
+idf_component_register(SRCS "event_group_main.c" INCLUDE_DIRS "")
