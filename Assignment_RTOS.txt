@@ -1,7 +1,7 @@
 ## Q1.
     Find what is the task priority numbering for the RTOS you are using. eg. Higher the
     number higher the priority or vice-versa. Find the range of priority that can be assigned to 
-    a task for your RTOS.
+    a task for your RTOS. 
 ## A1.
     Task priority numbering is as such--Higher the number , Higher will be the priority.
     RANGE = 0 to configMAX_PRIOIRTIES-1
@@ -19,6 +19,7 @@
     Observe the jitter in the timestamp vs the periodicity. Enhance the code to 10 periodic tasks
     with different periodicity. Futher observe the jitter in each of the task.
 ## A3.
+    refer README Program no = 17. timestamp
 
 ## Q4.
     Create two task with priority 10 and 20. Each task prints its own custom message.
@@ -36,7 +37,7 @@
     What are the maximum number of tasks that can be created on the RTOS you are using?
     Is it limited by the RTOS design or underlying hardware resources or both.
 ## A6.
-    Maximum no of tasks that can be executed depends on the RAM space as there is no definite number.
+    Maximum no of tasks that can be executed depends on the RAM space/Heap size as there is no definite number.
     RTOS specifies that at an instant only one task can be executed which has highest priority
 
 ## Q7.
@@ -50,11 +51,15 @@
      List the customization options for creating a task for the RTOS you are using. eg. priority etc
 ## A8.
     customization options 
-        -priority
-        -stack depth
-        -task handler
-        -task name
-        -pointer to task id
+        vTaskDelay
+        vTaskDelayUntil
+        xTaskDelayUntil
+        uxTaskPriorityGet
+        vTaskPrioritySet
+        vTaskSuspend
+        vTaskResume
+        xTaskResumeFromISR
+        xTaskAbortDelay   
     
 ## Q9.
     Find the fields that are maintained in the Task Control Block / Process Control Block of the
@@ -81,7 +86,8 @@
     What are the APIs provided by your RTOS for enabling and disabling the interrupts? Write
     a program to demonstrate this capability?
 ## A12. 
-    portDISABLE_INTERRUPTS & portENABLE_INTERRUPTS
+    taskENTER_CRITICAL & taskEXIT_CRITICAL
+    (refer README ) Prog no =18. interrupt
 
 ## Q13.
     Does your RTOS provide APIs to collect task statistics. If yes, list the statistics parameters
@@ -131,7 +137,8 @@
 
 ## Q20.
      Write a RTOS application to demonstrate deferred interrupt processing using binary semaphores
-
+## A20.
+    (refer README) Program No = 20. dferred_intr
 
 ## Q21.
      Write a RTOS application to demonstrate counting semaphores to synchronize a task
@@ -142,6 +149,7 @@
      Write a RTOS application to demonstrate the usage of queues within an interrupt service
     routine
 ## A22.
+   (refer README) Program No = 19. queue_intr
 
 ## Q23.
      Write a RTOS application to manage resources using mutual exclusion

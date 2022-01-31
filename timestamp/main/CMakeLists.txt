@@ -1,0 +1,1 @@
+idf_component_register(SRCS "timestamp_main.c" INCLUDE_DIRS "")

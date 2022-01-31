@@ -51,6 +51,14 @@ Creating event group to set bits from two tasks and wait for all bit to set from
 prog to create idle hook callback funtion called each time by idle task on getting run time
 ## 16. binary_sema
 RTOS application to demonstrate binary semaphores to synchronize a task
+## 17. timestamp
+RTOS that provides timestamp and  Observing the jitter in the timestamp vs the periodicity.
+## 18. interrupts
+enabling and disabling the interrupts
+## 19. queue_intr
+demonstrating the usage of queues within an interrupt service routine
+## 20. defferd_intr
+demonstrate deferred interrupt processing
 
 
   

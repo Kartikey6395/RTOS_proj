@@ -1,0 +1,1 @@
+idf_component_register(SRCS "Q_intr_main.c" INCLUDE_DIRS "")
