@@ -59,7 +59,8 @@ enabling and disabling the interrupts
 demonstrating the usage of queues within an interrupt service routine
 ## 20. defferd_intr
 demonstrate deferred interrupt processing
-
+## 21. priority inversion
+demonstrating priority inversion problem and solving by priority ceiling/priority inversion protocols using MUTEX
 
   
 

@@ -1,0 +1,1 @@
+idf_component_register(SRCS "p_inversion_main.c" INCLUDE_DIRS "")
